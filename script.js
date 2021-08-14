@@ -8,6 +8,8 @@ let today = new Date();
 month = today.getMonth();
 year = today.getFullYear();
 
+
+
 setMonth(month, year);
 
 function setMonth(m, y) {
@@ -15,7 +17,7 @@ function setMonth(m, y) {
     let year = y;
 
     let currentMonth = new Date(y, m);
-    monthTitle.innerHTML = currentMonth.toLocaleDateString(undefined, {month: 'long'});
+    monthTitle.innerHTML = currentMonth.toLocaleDateString(undefined, {month: 'long', year: 'numeric'});
 
     let monthDays = getDaysInMonth(month, year);
     let currentPosition = retrieveFirstDayMonth(month, year);
@@ -23,10 +25,14 @@ function setMonth(m, y) {
 
     let dayCounter = 0;
     for (let i = 0; i < calanderCell.length; i++) {
+      if (currentPosition == calanderCell.length) {    //makes sure we do not set anything past lengh of calander cells. 
+        break;
+      }
       calanderCell[currentPosition].innerHTML = monthDays[dayCounter];
       if (calanderCell[currentPosition].innerHTML == "undefined") {
         calanderCell[currentPosition].innerHTML = "";
-      }
+        break;
+      } 
       dayCounter += 1; 
       currentPosition += 1;
     }
@@ -57,7 +63,12 @@ document.querySelector('.back').addEventListener("click", (e) => {
   for (let i = 0; i < calanderCell.length; i++) {
     calanderCell[i].innerHTML = "";
   }
+
   month -=1
+  if (month == -1) {
+    year -= 1; 
+    month = 11;
+  }
   setMonth(month, year);
 
 });
@@ -67,6 +78,10 @@ document.querySelector('.next').addEventListener("click", () => {
     calanderCell[i].innerHTML = "";
   }
   month +=1
+  if (month == 12) {
+    year += 1; 
+    month = 0;
+  }
   setMonth(month, year);
 });
 
@@ -75,7 +90,11 @@ document.addEventListener('keyup', (event) => {
     for (let i = 0; i < calanderCell.length; i++) {
       calanderCell[i].innerHTML = "";
     }
-    month -=1
+    month +=1
+    if (month == 12) {
+      year += 1; 
+      month = 0;
+    }
     setMonth(month, year);
     
   }
@@ -86,7 +105,12 @@ document.addEventListener('keyup', (event) => {
     for (let i = 0; i < calanderCell.length; i++) {
       calanderCell[i].innerHTML = "";
     }
-    month +=1
+  
+    month -=1
+    if (month == -1) {
+      year -= 1; 
+      month = 11;
+    }
     setMonth(month, year);
     
   }

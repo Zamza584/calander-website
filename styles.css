@@ -12,49 +12,52 @@
 
 body {
   font-family: "Courier New", Courier, monospace;
+  background: url(/images/background.jpg) no-repeat transparent center;
 }
+
 h1 {
+  color: lightcyan;
   margin-bottom: 2rem;
 }
 
 .border-calander {
   position: absolute;
   left: 1.5rem;
-  width: 1040px;
-  height: 545px;
+  width: 1045px;
+  height: 675px;
   border: rgb(53, 109, 192) solid 10px;
   border-radius: var(--border-radius);
 }
 
 .calander-month {
   display: inline-grid;
-  background-color: rgb(153, 135, 135);
+  background: rgba(46, 185, 173, 0.89);
   grid-template-columns: repeat(7, 150px);
-  grid-template-rows: 2rem 2rem repeat(5, 100px);
+  grid-template-rows: 3rem 2.5rem repeat(6, 100px);
   border-radius: var(--border-radius);
 }
 
 #month-title {
   color: blue;
   grid-column: 1 / -1;
+  margin-top: 0.4rem;
   text-align: center;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 #month-title,
 .calander-date,
 .calander-cell {
+  font-size: 1.3rem;
   padding: 0.4rem;
-  border: rgba(20, 20, 255, 0.4) solid 2px;
+  border: rgb(36, 24, 143) solid 0.2rem;
 }
-.bottom-left {
-  border-radius: 0 0 0 var(--border-radius);
+.calander-cell {
+  color: rgb(255, 255, 189);
+  text-align: right;
 }
-.bottom-right {
-  border-radius: 0 0 var(--border-radius) 0;
-}
-
 .buttons {
-  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 .btn {
   border: none;
